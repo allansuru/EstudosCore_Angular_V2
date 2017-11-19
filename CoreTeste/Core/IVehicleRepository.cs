@@ -13,6 +13,6 @@ namespace CoreTeste.Core
         void Add(Vehicle vehicle);
         void Remove(Vehicle vehicle);
 
-        Task<IEnumerable<Vehicle>> GetVehicles(VehicleQuery filter);
+        Task<IEnumerable<Vehicle>> GetVehiclesAsync(VehicleQuery filter);
     }
 }

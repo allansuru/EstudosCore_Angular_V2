@@ -14,9 +14,9 @@ namespace CoreTeste.Persistence
         {
             this.context = context;
         }
-        public Task CompleteAsyc()
+        public async Task CompleteAsycAsync()
         {
-            throw new NotImplementedException();
+            await context.SaveChangesAsync();
         }
     }
 }
