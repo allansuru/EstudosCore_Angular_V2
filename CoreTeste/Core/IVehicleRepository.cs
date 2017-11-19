@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CoreTeste.Core
 {
-    interface IVehicleRepository
+    public interface IVehicleRepository
     {
         Task<Vehicle> GetVehicle(int id, bool includedRelated = true);
         void Add(Vehicle vehicle);
         void Remove(Vehicle vehicle);
 
-        Task<IEnumerable<Vehicle>> GetVehiclesAsync(VehicleQuery filter);
+        Task<IEnumerable<Vehicle>> GetVehicles(VehicleQuery filter);
     }
 }

@@ -13,7 +13,6 @@ namespace CoreTeste.Core.Models
 
         [Required]
         [StringLength(255)]
-        public bool? ativo { get; set; }
 
         public string Name { get; set; }
 

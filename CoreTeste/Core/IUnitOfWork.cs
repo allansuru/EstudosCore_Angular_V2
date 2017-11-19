@@ -5,6 +5,6 @@ namespace CoreTeste.Core
 
     public interface IUnitOfWork
     {
-        Task CompleteAsycAsync();
+        Task CompleteAsyc();
     }
 }

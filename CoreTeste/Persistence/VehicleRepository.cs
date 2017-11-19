@@ -39,7 +39,7 @@ namespace CoreTeste.Persistence
 
      
 
-        public async Task<IEnumerable<Vehicle>> GetVehiclesAsync(VehicleQuery queryObj)
+        public async Task<IEnumerable<Vehicle>> GetVehicles(VehicleQuery queryObj)
         {
             var query = context.Vehicles
          .Include(v => v.Model)
