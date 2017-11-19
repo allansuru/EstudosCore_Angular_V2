@@ -11,9 +11,10 @@ using System;
 namespace CoreTeste.Migrations
 {
     [DbContext(typeof(CoreTesteDbContext))]
-    partial class CoreTesteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171118221424_AddDbContext_ChavePrimariaComposta")]
+    partial class AddDbContext_ChavePrimariaComposta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

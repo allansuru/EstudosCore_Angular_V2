@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vega.Core.Models
+namespace CoreTeste.Core.Models
 {
     [Table("VehicleFeatures")]
     public class VehicleFeature
