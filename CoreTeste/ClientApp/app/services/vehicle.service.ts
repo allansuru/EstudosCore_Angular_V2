@@ -20,24 +20,24 @@ export class VehicleService {
         return this.http.get('/api/features')
             .map(res => res.json());
     }
-    getVehicle(id: any) {
+    getVehicle(id) {
         return this.http.get(this.vehiclesEndpoint + '/' + id)
             .map(res => res.json());
     }
 
-    getVehicles(filter : any) {
+    getVehicles(filter) {
         return this.http.get(this.vehiclesEndpoint + '?' + this.toQueryString(filter))
             .map(res => res.json());
     }
 
-    toQueryString(obj : any) {
+    toQueryString(obj) {
         //prop=value&
         let parts = [];
 
         for (var property in obj) {
             var value = obj[property];
 
-           // if (value != null && value != undefined)
+            //if (value != null && value != undefined)
             //    parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
 
         }
@@ -45,7 +45,7 @@ export class VehicleService {
         return parts.join('&');
     }
 
-    create(vehicle: SaveVehicle) {
+    create(vehicle) {
         return this.http.post(this.vehiclesEndpoint, vehicle)
             .map(res => res.json());
     }

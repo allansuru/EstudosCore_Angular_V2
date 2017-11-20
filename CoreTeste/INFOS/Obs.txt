@@ -141,4 +141,5 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
 
  OBS pós migração 1.1 pra core 2.0
 
- ngZone -> 
+- ngZone  nao taq funfando, retirei do projeto
+- o toast tive q add em todos apps.modules pra funfar 
