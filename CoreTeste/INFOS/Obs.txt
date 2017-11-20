@@ -1,0 +1,144 @@
+﻿Pacotes que preciso instalar via NUGET, seguindo a cronologia do projeto!
+
+1 ° Instalar o Entity Framework => Install-Package Microsoft.EntityFrameworkCore -Version 1.1.0
+Install-Package Microsoft.EntityFrameworkCore.SqlServer  -Version 1.1
+Install-Package Microsoft.EntityFrameworkCore.Tools -Version 1.1 ---> Esse é o do Migration
+Install-Package Microsoft.EntityFrameworkCore.Design -Version 1.1 -- Esse tbm
+Install-Package AutoMapper
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection -Version 1.2.0
+npm install ng2-toasty@2.5.0 --save
+npm install webpack -g
+npm install raven-js --save
+npm install underscore e npm install @types/underscore
+
+
+* Passo a passo pra nao se perder
+
+- Criar as Models e o DBContext
+- Adicionando "Dependence Injection" par ao DbContext, registrar elas na classe Startup.cs e add a conn na appsettings.json, isso no CORE, porem no MVC add isso web.config
+- Daí rodar o Migration pra criar tudo direitinho, mas ainda sem os dbsets.
+- Depois como noa adicionamos os db-sets, vamos usar o Remove-Migration -Force, q deleta o ultimo registro gerado pelo Migration e rodar outro Add-Migration
+- Depois de  adicionar uns data annotations e seeds no banco, comecei a controller, tive problemas ao gerar pelo VS, gera varios erros estranhos.
+- Daí tive que da um ctrl c + ctrl v num controller pra comecar a montar meu controller webapi
+- Após o webapi na controller, criei um Resource, q é como se fosse o meu DTO
+- Após os Resources(dtos), vamos add o automapper no projeto(nuget) e configurar ele na classe Startup.css em COnfigureService
+- Adicionar o AutoMapper nos controles, e criar uma pasta Mapping pra cuidar dos maps profiles
+- Agora começa o client, sao varios arquivos, pra mexer. Fiz um checkin aqui pra saber quais, nome do check-in -> Start ANGULAR
+- Após adicionar os modules pra funfar o angular, a gente constroi serviços que vao ser consumidos pelo component, estes serviços(web api) consomem as infos do banco
+- criou o serviço com o http, etc, injeta no construtor pra usar e depois add no appmodule o serviço dentro do provider
+- IMPORTANTISSIMO, nesse meu exemplo o meu app.module é o app.module.client e as rotas tao no app.module.shared
+- No html, quando for usar o ngModel, adicionar a propriedade name, senao, nao funfa, vem um objeto vazio
+<select id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.make" name="make">
+- Criando o service do Features, sempre q criar uma services.ts, add no appmodule(app.module.client) esse cara pra poder usar.
+- Mais um exemplo PICA do zenconding (div.form-group>label+input[type='text'].form-control)*3
+- OBS: Na versão 1 do entityframework do netCore, não tinha ainda o n to n, tive adicionar essa tratativa no MappingProfile. NO EF 6 funfa automatico.
+- Sempre começando por propriedades, depois vem os constructors e finalmente os methods.
+- No caso de ser uma rota unica como essa '/api/vehicles' facilita criar uma rota no topo da classe, como: [Route("/api/vehicles")]
+-  Repare que no post do api/vehicle, tem mais um item a se guardar. [FromBody], repare q nos testes usando o Postaman, é no body q eu passo o meu json.
+- Ex. Jason do http://localhost:52785/api/vehicles/
+-  {
+    modelId: 4,
+    isRegistered: true,
+    contact: {
+        name: "Allan SuRu2",
+        email: "allansuru@hotmail.com",
+        phone: "221213"
+    },
+    features: [1,2,3]
+}
+- Como repararam meu json, é montando no Resource, nesse caso, VehicleResource, que evidentemente tem q ta mapeado no mapping e no api/vehicles, pq esse cara tem ligacao
+com contato, e é uma boa prática criar um resource!!
+- PRA ESTUDOS:. Criei uma coluna ativo pro makes e entendi bastante a questao do model, resource e json, entendi tbm q da pra manipular de ambos os
+lados(server, client), mas qnd vem do server eu manipo e ja reflete direto no client, eu tbm consigo manipular no client, porem, tem q fazer um post desse objeo.
+- Sempre prefira Fluent API, mais completo que data annotation, data annotation, bom pra validar inputs.
+- Depois q arrumei o post e put, e testando no POSTMAN, temos o seguinte retorno do json do vehicle
+{
+    "id": 13,
+    "model": {
+        "id": 4,
+        "name": "Make2-ModelA"
+    },
+    "make": {
+        "id": 5,
+        "name": "Make2"
+    },
+    "isRegistered": true,
+    "contact": {
+        "name": "NIKOLAS TESLA PUT",
+        "email": "teste@hotmail.com",
+        "phone": "121"
+    },
+    "lastUpdate": "2017-10-26T20:11:09.1951992-02:00",
+    "features": [
+        {
+            "id": 1,
+            "name": "Feature1"
+        }
+    ]
+
+- Repare que ate esse ponto no git, temos no VehicleController, mt código repetido, apesar de já ter feito alguns refactores nas classes. mas nos métodos,
+tem mt repeticao como isso aqui:
+
+context.Vehicles
+                 .Include(v => v.Features)
+                   .ThenInclude(vf => vf.Feature)
+                 .Include(v => v.Model)
+                   .ThenInclude(m => m.Make)
+                 .SingleOrDefaultAsync(v => v.Id == id);
+
+Percebido isso, vamos adicionar na pasta de persistencia um Vehicle Repositorio com esse codigo acima e sua Interface. VehicleRepository : IVehicleRepository
+- Criada a interface, vamos configurar a injecdao de  dependencia no Startup.cs
+- Repare que no VehicleController tem esses tres caras no construtor, ou seja, temos que injet-alos pra usá-los na classe e configurar no startup.
+construtor:    this.context = context;
+            this.mapper = mapper;
+            this.repository = repository;
+
+
+Configurar no startup:  services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddAutoMapper();
+            services.AddDbContext<VegaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+injetado Irepository, automapper e context(DB)
+- pra cada interface que vamos usar injetando, adicionamos aqui(Startup.cs) a referencia do msm.
+- Reparem que chegou um ponto ao avançar o código, que só temos Interfaces sendo usadas na controller, isso se chama, baixo acoplamento - SOLID!!
+ fica mais facil aplicar unit test, se tiver que mudar alguma coisa no context, nao preciso mudar em um monte de lugar. Encapsulamos o repositoio
+- Tava com problema sempre q eu carregava o meu vehicle-forms, adicionei no app.module.server.ts o FormsModule no import e resolveu!
+- Instalando o toast no meu projeto npm install ng2-toasty --save
+- Instalando webpack npm install webpack -g
+- Após instalar o toast, é importante adicionar seu estilos, em webpack.config.vendor.js!!
+  rode o seguinte comando:  webpack --config webpack.config.vendor.js e pra efetivar mais uma vez webpack
+- Mosh fala do sentry.io, esse cara é um logging service
+- Chegou num ponto que é interessante já criar o model no meu client pra trabalhar mais facilmente como objeto, entao foi criado as interface, tudo no msm arquivo,
+depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
+- agora entra mais modulo pra ser instalado - npm install underscore e npm install @types/underscore , logo depois de instalar ir no webpack.config.vendor.js
+ e add o   'underscore', e rodar o webpack --config webpack.config.vendor.js
+ - Criando filtros, no client é mt fácil, no objeto temos o filter(), agora no server, criamos o filterResource(api controller), o model Filter e add no mapping
+  Adicionamos o filtro no Repositorio de veiculos(Repository, IRepository) na function GetVehicles() ==> Isso foi o Domain Part.
+  - API part Filter, vamos para o API - VehicleController
+
+
+* Lembretes
+
+Add-Migration "Nome"
+UpdateDatabase
+
+Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a conexao de string por exemplo Configuration["ConnectionStrings:Default"]
+ 
+ Win Autentication - "server=localhost; database=vega; Integrated Security=SSPI;"
+ SQL Autentication - "server=localhost; database=vega; user id=sa; password=passw;"
+
+ Outro ponto a levar em consideração, na hora de rodar o Add-Migration "Initial Model", rodar aos poucos, por exemplo, antes dos dobsets, poucas classes, menos 
+ chance de dar erro
+
+
+
+ *Zencoding
+   div.form-group>label[for='model']+select[id='model'].form-control
+
+
+ //"Data Source=DESKTOP-Q5M5PCV\SQLEXPRESS;Initial Catalog=vega;Integrated Security=True";
+
+
+ OBS pós migração 1.1 pra core 2.0
+
+ ngZone -> 

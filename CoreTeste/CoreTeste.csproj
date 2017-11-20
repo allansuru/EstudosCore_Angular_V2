@@ -23,6 +23,20 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
+    <None Remove="ClientApp\app\models\vehicle.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.error-handler.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\vehicle-form\vehicle-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\vehicle.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\feature.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\vehicle.service.ts" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

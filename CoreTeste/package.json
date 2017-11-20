@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "ng2-toasty": "^2.5.0",
+    "node-injectable": "^2.1.0",
     "raven-js": "^3.20.1"
   }
 }

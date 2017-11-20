@@ -1,16 +1,23 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppModuleShared } from './app.shared.module';
 import { AppComponent } from './components/app/app.component';
+import { ToastyModule } from 'ng2-toasty';
+import { FormsModule } from '@angular/forms';
+import { AppErrorHandler } from './app.error-handler';
+import { VehicleService } from './services/vehicle.service';
 
 @NgModule({
     bootstrap: [ AppComponent ],
     imports: [
         BrowserModule,
+        FormsModule,
+        ToastyModule.forRoot(),
         AppModuleShared
     ],
     providers: [
-        { provide: 'BASE_URL', useFactory: getBaseUrl }
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        VehicleService
     ]
 })
 export class AppModule {
