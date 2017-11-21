@@ -63,7 +63,7 @@ namespace CoreTeste.Persistence
 
                 ["make"] = v => v.Model.Make.Name,
                 ["model"] = v => v.Model.Name,
-                ["contacName"] = v => v.ContactName
+                ["contactName"] = v => v.ContactName
 
 
             };

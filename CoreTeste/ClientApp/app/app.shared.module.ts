@@ -32,7 +32,7 @@ import { ToastyModule } from 'ng2-toasty';
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent },
             { path: 'vehicles/:id', component: VehicleFormComponent },
             { path: 'vehicles', component: VehicleListComponent },

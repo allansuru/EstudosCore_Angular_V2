@@ -4,6 +4,7 @@ import { SaveVehicle, Vehicle } from './../models/vehicle';
 import 'rxjs/add/operator/map';
 
 
+
 @Injectable()
 
 export class VehicleService {
@@ -31,15 +32,11 @@ export class VehicleService {
     }
 
     toQueryString(obj) {
-        //prop=value&
-        let parts = [];
-
+        var parts: any = [];
         for (var property in obj) {
             var value = obj[property];
-
-            //if (value != null && value != undefined)
-            //    parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
-
+            if (value != null && value != undefined)
+                parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
         }
 
         return parts.join('&');
