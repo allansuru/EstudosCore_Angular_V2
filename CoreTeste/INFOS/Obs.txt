@@ -10,6 +10,7 @@ npm install ng2-toasty@2.5.0 --save
 npm install webpack -g
 npm install raven-js --save
 npm install underscore e npm install @types/underscore
+npm install --save underscore
 
 
 * Passo a passo pra nao se perder
@@ -115,6 +116,9 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
  - Criando filtros, no client é mt fácil, no objeto temos o filter(), agora no server, criamos o filterResource(api controller), o model Filter e add no mapping
   Adicionamos o filtro no Repositorio de veiculos(Repository, IRepository) na function GetVehicles() ==> Isso foi o Domain Part.
   - API part Filter, vamos para o API - VehicleController
+  - ESTRANHO, perdeu referencia pro underscore, npm install --save underscore, reinstalei, funfou!
+  - Instalar os icones, em npm install font-awesome --save, add o css no vendor.js e rodar o webpack e novamente rodar(se nao rodar 2 vzs, da ruiim!!)
+  webpack --config webpack.config.vendor.js
 
 
 * Lembretes
