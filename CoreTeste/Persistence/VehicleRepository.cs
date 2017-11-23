@@ -71,6 +71,8 @@ namespace CoreTeste.Persistence
             //estudar esse cara
             query = query.ApplyOrdering(queryObj, columnsMap);
 
+            query = query.ApplyPaging(queryObj);
+
             return await query.ToListAsync();
         }
 
