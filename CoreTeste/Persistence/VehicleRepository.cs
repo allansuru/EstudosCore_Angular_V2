@@ -48,7 +48,7 @@ namespace CoreTeste.Persistence
            .ThenInclude(vf => vf.Feature)
            .AsQueryable();
 
-
+            queryObj.TotalSize = query.Count();
 
 
             if (queryObj.MakeId.HasValue)

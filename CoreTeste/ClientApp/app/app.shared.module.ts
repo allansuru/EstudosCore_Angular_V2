@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { PaginationComponent } from './components/shared/pagination.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
 import { ToastyModule } from 'ng2-toasty';
@@ -24,7 +25,9 @@ import { ToastyModule } from 'ng2-toasty';
         FetchDataComponent,
         HomeComponent,
         VehicleFormComponent,
-        VehicleListComponent
+        VehicleListComponent,
+        PaginationComponent,
+
     ],
     imports: [
         CommonModule,

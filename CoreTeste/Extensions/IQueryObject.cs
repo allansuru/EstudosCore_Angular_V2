@@ -11,5 +11,6 @@ namespace CoreTeste.Extensions
         bool IsSortAscending { get; set; }
         int Page { get; set; }
         byte PageSize { get; set; }
+        int TotalSize { get; set; }
     }
 }
