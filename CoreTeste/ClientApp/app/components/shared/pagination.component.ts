@@ -28,10 +28,9 @@ import { OnChanges } from '@angular/core';
 
 })
 export class PaginationComponent implements OnChanges {
-   
-    @Input('page-size') pageSize;
+    @Input('total-items') totalItems;
+    @Input('page-size') pageSize = 10;
     @Output('page-changed') pageChanged = new EventEmitter();
-     @Input('total-items') totalItems;
     pages: any[];
     currentPage = 1;
 

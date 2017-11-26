@@ -119,6 +119,7 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
   - ESTRANHO, perdeu referencia pro underscore, npm install --save underscore, reinstalei, funfou!
   - Instalar os icones, em npm install font-awesome --save, add o css no vendor.js e rodar o webpack e novamente rodar(se nao rodar 2 vzs, da ruiim!!)
   webpack --config webpack.config.vendor.js
+  - https://l-lin.github.io/angular-datatables/#/basic/with-options -> Datatable do Angular2,4
 
 
 * Lembretes

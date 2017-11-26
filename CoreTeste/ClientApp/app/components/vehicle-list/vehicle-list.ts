@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class VehicleListComponent implements OnInit {
     private readonly PAGE_SIZE = 3;
 
-    vehicles: Vehicle[];
+
     makes: KeyValuePair[];
     queryResult: any = {};
     query: any = {
@@ -40,32 +40,25 @@ export class VehicleListComponent implements OnInit {
     private populateVehicles() {
 
         this.vehicleService.getVehicles(this.query)
-            .subscribe(v => this.vehicles = v);
+            .subscribe(result => this.queryResult = result);
 
     }
 
     onFilterChange() {
 
-        //pra testar mais de um filtro
-        // this.filter.modelId = 4;
-
+        this.query.page = 1;
         this.populateVehicles();
 
 
-        //let vehicles = this.AllVehicles;
-
-        //if (this.filter.makeId)
-        //    vehicles = vehicles.filter(v => v.make.id == this.filter.makeId)
-
-        //if (this.filter.modelId)
-        //    vehicles = vehicles.filter(v => v.model.id == this.filter.modelId)
-
-        //this.vehicles = vehicles;
     }
 
     resetFilter() {
-        this.query = {};
-        this.onFilterChange();
+        this.query = {
+            page: 1,
+            pageSize: this.PAGE_SIZE
+            
+        };
+        this.populateVehicles();
     }
     sortBy(columnName)
     {
