@@ -74,7 +74,6 @@ export class VehicleListComponent implements OnInit {
 
     }
     onPageChange(page) {
-        console.log(page);
         this.query.page = page;
         this.populateVehicles();
     }

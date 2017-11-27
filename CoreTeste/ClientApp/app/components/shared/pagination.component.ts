@@ -38,8 +38,6 @@ export class PaginationComponent implements OnChanges {
         this.currentPage = 1;
 
         var pagesCount = Math.ceil(this.totalItems / this.pageSize);
-        console.log(this.totalItems);
-        console.log(this.pageSize)
         this.pages = [];
         for (var i = 1; i <= pagesCount; i++)
             this.pages.push(i);

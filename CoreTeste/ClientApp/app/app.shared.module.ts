@@ -1,3 +1,4 @@
+import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle';
 import { NgModule } from '@angular/core';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list';
 import { CommonModule } from '@angular/common';
@@ -26,6 +27,7 @@ import { ToastyModule } from 'ng2-toasty';
         HomeComponent,
         VehicleFormComponent,
         VehicleListComponent,
+        ViewVehicleComponent,
         PaginationComponent,
 
     ],
@@ -35,9 +37,10 @@ import { ToastyModule } from 'ng2-toasty';
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent },
-            { path: 'vehicles/:id', component: VehicleFormComponent },
+            { path: 'vehicles/edit/:id', component: VehicleFormComponent },
+            { path: 'vehicles/:id', component: ViewVehicleComponent },
             { path: 'vehicles', component: VehicleListComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
