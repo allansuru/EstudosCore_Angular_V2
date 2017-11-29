@@ -120,7 +120,14 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
   - Instalar os icones, em npm install font-awesome --save, add o css no vendor.js e rodar o webpack e novamente rodar(se nao rodar 2 vzs, da ruiim!!)
   webpack --config webpack.config.vendor.js
   - https://l-lin.github.io/angular-datatables/#/basic/with-options -> Datatable do Angular2,4
-
+  - Interessante o Observable no caso do submit, recebendo o valor e fazendo o subscrable
+  - Adicionando o modelo de Photos, e usando migration neh, pra adicionar a referencia no banco da tabela Vehicles já que adicionamos uma coleção na 
+  model de Vehicles.cs
+  - Repare que, no migration da Photo(Pasta Migration - AddPhoto), eu crio a tabela no banco, e como, eu adicionei no model Vehicle a coleção de Photos e
+  por boas praticas eu inicializei a mesma, na hora q criou a tabela no banco(Photo), ela adicionou a FK de VehicleId.. tá certinho!! 
+  OBS: Só gera o migration depois de  add o DbSet<Photo> no DbContext da aplicação
+  - Criamos um novo api pro vehicles/vehicleId/photos, testamos no Postman com Key file. MT FODA, lembrando que vc tem q transformar o nome do file em
+ um GUID. SEGURANÇA. Aquela historia, controler, model/Resource/Mapping, e no controler as interfaces pra trabalhar com isso tudo
 
 * Lembretes
 

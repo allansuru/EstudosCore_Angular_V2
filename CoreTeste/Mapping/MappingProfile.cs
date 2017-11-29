@@ -18,6 +18,7 @@ namespace CoreTeste.Mapping
             //Pra casos genéricos
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
+            CreateMap<Photo, PhotoResource>();
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
             CreateMap<Model, KeyValuePairResource>();
