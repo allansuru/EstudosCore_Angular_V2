@@ -10,6 +10,7 @@ using CoreTeste.Core.Models;
 using CoreTeste.Core;
 using AutoMapper;
 using CoreTeste.Controllers.Resources;
+using Microsoft.Extensions.Options;
 
 namespace CoreTeste.Controllers
 {
@@ -25,13 +26,16 @@ namespace CoreTeste.Controllers
         private readonly IVehicleRepository vehicleRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly IOptionsSnapshot<PhotoSettings> options;
+        private readonly PhotoSettings photoSettings;
 
-        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork, IMapper mapper, IOptionsSnapshot<PhotoSettings> options )
         {
             this.host = host;
             this.vehicleRepository = vehicleRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.photoSettings = options.Value;
         }
 
         public IHostingEnvironment HostingEnvironment { get; }
@@ -44,7 +48,10 @@ namespace CoreTeste.Controllers
             if (vehicle == null)
                 return NotFound();
 
-
+            if (file == null) return BadRequest("Null file");
+            if (file.Length == 0) return BadRequest("Empty file");
+            if (file.Length > photoSettings.MaxBytes) return BadRequest("Max file is 10mb");
+            if (!photoSettings.isSupported(file.FileName)) return BadRequest("Invalid file type");
 
             //Multiples Files IFormCollection
            var uploadFolderPath =  Path.Combine(host.WebRootPath, "uploads");

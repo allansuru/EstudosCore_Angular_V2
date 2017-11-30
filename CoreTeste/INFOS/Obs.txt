@@ -128,6 +128,12 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
   OBS: Só gera o migration depois de  add o DbSet<Photo> no DbContext da aplicação
   - Criamos um novo api pro vehicles/vehicleId/photos, testamos no Postman com Key file. MT FODA, lembrando que vc tem q transformar o nome do file em
  um GUID. SEGURANÇA. Aquela historia, controler, model/Resource/Mapping, e no controler as interfaces pra trabalhar com isso tudo
+ Foi criado junto no upload uma pasta uploads no wwwroot C:\Users\allan\OneDrive\Documents\Visual Studio 2017\Projects\CoreTeste\CoreTeste\wwwroot\uploads\
+ - Criando as validações para as fotos, criamos no appsettings.json os valores para o tamanho máximo e os formatos aceitos, repare que precisa ser 
+ injetado as dependencias desse cara no Startup.cs
+ - Lembrando que no netCore, as configurações fazemons no appsetting.json, mas, no MV5, faríamos isso no web.config!!!!!!
+
+
 
 * Lembretes
 
