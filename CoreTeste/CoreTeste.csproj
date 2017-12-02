@@ -29,6 +29,7 @@
     <None Remove="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
     <None Remove="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
     <None Remove="ClientApp\app\models\vehicle.ts" />
+    <None Remove="ClientApp\app\services\photo.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +40,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\feature.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\photo.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\vehicle.service.ts" />
   </ItemGroup>
 

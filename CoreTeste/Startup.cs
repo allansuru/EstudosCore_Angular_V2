@@ -25,6 +25,7 @@ namespace CoreTeste
         {
             services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddAutoMapper();

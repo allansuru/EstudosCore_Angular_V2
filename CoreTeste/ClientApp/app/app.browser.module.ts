@@ -6,7 +6,7 @@ import { ToastyModule } from 'ng2-toasty';
 import { FormsModule } from '@angular/forms';
 import { AppErrorHandler } from './app.error-handler';
 import { VehicleService } from './services/vehicle.service';
-
+import { PhotoService } from "./services/photo.service";
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { VehicleService } from './services/vehicle.service';
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
-        VehicleService
+        VehicleService,
+        PhotoService
     ]
 })
 export class AppModule {

@@ -15,6 +15,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { PaginationComponent } from './components/shared/pagination.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
+
 import { ToastyModule } from 'ng2-toasty';
 
 @NgModule({

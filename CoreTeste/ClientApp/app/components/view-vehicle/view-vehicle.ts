@@ -1,6 +1,7 @@
 ﻿import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from './../../services/vehicle.service';
-import { Component, OnInit } from '@angular/core';
+import { PhotoService } from './../../services/photo.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class ViewVehicleComponent implements OnInit {
+    @ViewChild('fileInput') fileInput: ElementRef;
     vehicle: any;
     vehicleId: number;
+    photos: any[];
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private toasty: ToastyService,
+        private photoService: PhotoService,
         private vehicleService: VehicleService) {
 
         route.params.subscribe(p => {
@@ -27,6 +31,10 @@ export class ViewVehicleComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.photoService.getPhotos(this.vehicleId)
+            .subscribe(photos => this.photos = photos);
+
+
         this.vehicleService.getVehicle(this.vehicleId)
             .subscribe(
             v => this.vehicle = v,
@@ -45,5 +53,27 @@ export class ViewVehicleComponent implements OnInit {
                     this.router.navigate(['/vehicles']);
                 });
         }
+    }
+    uploadPhoto() {
+        var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
+        var file: any;
+        if (nativeElement.files)
+             file = nativeElement.files[0];
+        nativeElement.value = '';
+
+        this.photoService.upload(this.vehicleId, file)
+            .subscribe(photo => {
+                this.photos.push(photo);
+            },  
+            err => {
+                this.toasty.error({
+                    title: 'Erro Upload Photo',
+                    msg: err.text(),
+                    theme: 'bootstrap',
+                    showClose: true,
+                    timeout: 5000
+
+                });
+            });
     }
 }

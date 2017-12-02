@@ -30,12 +30,20 @@
                 <a class="btn btn-primary" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
                 <button class="btn btn-danger" (click)="delete()">Delete</button>
                 <a class="btn btn-default" [routerLink]="['/vehicles']">View All Vehicles</a>
+
             </p>
         </div>
         <!-- Photos tab -->
         <div role="tabpanel" class="tab-pane" id="photos">
             <h2>Photos</h2>
-        </div>
+            <label class="btn btn-default btn-file">
+                <input  type="file" (change)="uploadPhoto()" #fileInput>
+                </label>
+
+            <div>   
+            <img *ngFor="let photo of photos" src="/uploads/{{ photo.fileName }}" class="img-thumbnail" />
+
+      
+</div>
     </div>
 </div>
-

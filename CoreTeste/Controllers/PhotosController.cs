@@ -26,15 +26,16 @@ namespace CoreTeste.Controllers
         private readonly IVehicleRepository vehicleRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-        private readonly IOptionsSnapshot<PhotoSettings> options;
+        private readonly IPhotoRepository photoRepository;
         private readonly PhotoSettings photoSettings;
 
-        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork, IMapper mapper, IOptionsSnapshot<PhotoSettings> options )
+        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork, IMapper mapper, IPhotoRepository photoRepository ,IOptionsSnapshot<PhotoSettings> options )
         {
             this.host = host;
             this.vehicleRepository = vehicleRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.photoRepository = photoRepository;
             this.photoSettings = options.Value;
         }
 
@@ -76,6 +77,13 @@ namespace CoreTeste.Controllers
             return Ok(mapper.Map<Photo, PhotoResource>(photo));
 
        
+        }
+        [HttpGet]
+        public async Task<IEnumerable<PhotoResource>> GetPhotos(int vehicleId)
+        {
+            var photos = await photoRepository.GetPhotos(vehicleId);
+
+            return mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoResource>>(photos);
         }
     }
 }

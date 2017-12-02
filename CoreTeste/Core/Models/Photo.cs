@@ -12,5 +12,6 @@ namespace CoreTeste.Core.Models
         [Required]
         [StringLength(255,ErrorMessage ="Nome da imagem muito grande!")]
         public string FileName { get; set; }
+        public int VehicleId { get; set; }
     }
 }
