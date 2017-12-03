@@ -25,6 +25,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\uploads\0330f48b-7681-4875-8e59-a25ae3d7a774.jpg" />
+    <Content Remove="wwwroot\uploads\065352c7-e7b9-470a-9005-02d69cb325a9.jpg" />
+    <Content Remove="wwwroot\uploads\0ca877e7-0d38-4beb-97c4-62a0818bb208.png" />
+    <Content Remove="wwwroot\uploads\24503de0-514c-49ac-bf97-959b9ab5daeb.jpg" />
+    <Content Remove="wwwroot\uploads\29ef783e-4778-4fd0-9057-39a64ea6f6b7.png" />
+    <Content Remove="wwwroot\uploads\2a727be7-f971-4de4-ba1c-639292aafaa7.png" />
+    <Content Remove="wwwroot\uploads\2d099d27-8c15-4615-9c8f-80295862e5c6.png" />
+    <Content Remove="wwwroot\uploads\36ff2a64-b25f-47fc-869d-30760b8bb1fa.png" />
+    <Content Remove="wwwroot\uploads\6199aa8d-4ac1-4db8-acf3-11db94a1ebfd.png" />
+    <Content Remove="wwwroot\uploads\61b5c9c3-7b89-42bb-8635-207f4eb969d1.jpg" />
+    <Content Remove="wwwroot\uploads\70c7bc18-6043-42eb-be67-3e341c8e1679.png" />
+    <Content Remove="wwwroot\uploads\84a9c190-98aa-4a5a-9580-6af34d0b04b9.png" />
+    <Content Remove="wwwroot\uploads\9c4890f0-1fa8-49dc-8678-546c761573de.jpg" />
+    <Content Remove="wwwroot\uploads\a6b0424c-7bbf-42a3-9d1b-fc49e51abda1.png" />
+    <Content Remove="wwwroot\uploads\be4fd762-4050-4a63-9709-77fb9c565976.jpg" />
+    <Content Remove="wwwroot\uploads\e21d3e1b-e62a-48b6-85dd-49eb8479c140.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\components\shared\pagination.component.ts" />
     <None Remove="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
     <None Remove="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
@@ -41,7 +60,12 @@
     <TypeScriptCompile Include="ClientApp\app\models\vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\feature.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\photo.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\progress.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\vehicle.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

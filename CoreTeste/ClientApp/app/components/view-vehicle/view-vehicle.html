@@ -41,7 +41,13 @@
                 </label>
 
             <div>   
-            <img *ngFor="let photo of photos" src="/uploads/{{ photo.fileName }}" class="img-thumbnail" />
+                <div class="progress" *ngIf="progress && progress.percentage < 100">
+                    <div class="progress-bar" [style.width]="progress.percentage + '%'">
+                        <span class="sr-only">{{ progress.percentage }}% Complete</span>
+                    </div>
+                </div>
+                
+                <img *ngFor="let photo of photos" src="/uploads/{{ photo.fileName }}" class="img-thumbnail" />
 
       
 </div>

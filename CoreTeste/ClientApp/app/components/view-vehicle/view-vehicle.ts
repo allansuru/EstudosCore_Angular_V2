@@ -1,7 +1,8 @@
 ﻿import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from './../../services/vehicle.service';
 import { PhotoService } from './../../services/photo.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ProgressService } from './../../services/progress.service';
+import { Component, OnInit, ElementRef, ViewChild, NgZone  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -13,13 +14,16 @@ export class ViewVehicleComponent implements OnInit {
     vehicle: any;
     vehicleId: number;
     photos: any[];
+    progress: any;
 
     constructor(
+        private zone: NgZone, 
         private route: ActivatedRoute,
         private router: Router,
         private toasty: ToastyService,
         private photoService: PhotoService,
-        private vehicleService: VehicleService) {
+        private vehicleService: VehicleService,
+        private progressService: ProgressService ) {
 
         route.params.subscribe(p => {
             this.vehicleId = +p['id'];
@@ -55,11 +59,27 @@ export class ViewVehicleComponent implements OnInit {
         }
     }
     uploadPhoto() {
+
+
+        this.progressService.uploadProgress
+            .subscribe(progress => {
+                this.zone.run(() => {
+                    this.progress = progress;
+                });
+                null
+            },
+        
+                () => { this.progress = null; });
+
+
+
         var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
         var file: any;
         if (nativeElement.files)
              file = nativeElement.files[0];
         nativeElement.value = '';
+
+      
 
         this.photoService.upload(this.vehicleId, file)
             .subscribe(photo => {
