@@ -61,10 +61,11 @@ export class ViewVehicleComponent implements OnInit {
     uploadPhoto() {
 
 
-        this.progressService.uploadProgress
+        this.progressService.startTracking()
             .subscribe(progress => {
                 this.zone.run(() => {
                     this.progress = progress;
+                    console.log(progress);
                 });
                 null
             },
@@ -77,7 +78,7 @@ export class ViewVehicleComponent implements OnInit {
         var file: any;
         if (nativeElement.files)
              file = nativeElement.files[0];
-        nativeElement.value = '';
+        nativeElement.value = ''; // limpa o input file
 
       
 

@@ -44,7 +44,9 @@ export class BrowserXhrWithProgress extends BrowserXhr
         };
 
         xhr.upload.onloadend = () => {
+  
             this.service.endTracking();
+     
         }
 
         return xhr;
