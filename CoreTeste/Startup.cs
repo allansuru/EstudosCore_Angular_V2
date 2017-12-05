@@ -2,6 +2,7 @@ using AutoMapper;
 using CoreTeste.Core;
 using CoreTeste.Core.Models;
 using CoreTeste.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -23,6 +24,9 @@ namespace CoreTeste
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            
+
             services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 
             services.AddScoped<IPhotoRepository, PhotoRepository>();
@@ -30,7 +34,21 @@ namespace CoreTeste
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddAutoMapper();
             services.AddDbContext<CoreTesteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            // 1. Add Authentication Services  //https://manage.auth0.com
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://allansuru.auth0.com/";
+                options.Audience = "https://api.estudos";
+            });
+
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +68,9 @@ namespace CoreTeste
             }
 
             app.UseStaticFiles();
+
+            // 2. Enable authentication middleware
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
