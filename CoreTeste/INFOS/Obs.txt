@@ -1,4 +1,5 @@
 ﻿Pacotes que preciso instalar via NUGET, seguindo a cronologia do projeto!
+OBS: instalar npm install  na raíz do projeto, sempre, na raíz pq vai ter o package.json
 
 1 ° Instalar o Entity Framework => Install-Package Microsoft.EntityFrameworkCore -Version 1.1.0
 Install-Package Microsoft.EntityFrameworkCore.SqlServer  -Version 1.1
@@ -11,6 +12,9 @@ npm install webpack -g
 npm install raven-js --save
 npm install underscore e npm install @types/underscore
 npm install --save underscore
+npm install auth0-lock angular2-jwt --save
+npm install --save auth0-js
+
 
 
 * Passo a passo pra nao se perder
@@ -134,6 +138,22 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
  - Lembrando que no netCore, as configurações fazemons no appsetting.json, mas, no MV5, faríamos isso no web.config!!!!!!
 - ENTENDIDO: Nao preciso mexer no app.server.module, mexo no app.shared.module q sao as rotas e no app.browser.module
 - Criamos um Repositorio para fotos, e sua interface, lembrar sempre de injetar qlq repositório criado no Startup.cs
+ - Compreendendo autenticação com o AUth2.0, criei uma conta no https://auth0.com/
+ - Testei no postaman o  [Authorize], validei com um token q eu gerei no link acima
+ - pra descriptografar meu token, tem esse site https://jwt.io/ 
+ - Usando no client : https://www.udemy.com/aspnet-core-angular/learn/v4/t/lecture/7198326?start=0
+ - Mais um cara pra instalar npm install auth0-lock angular2-jwt --save na raíz do projeto, sempre, na raíz pq vai ter o package.json
+ - Instalado bora no webpack.config.vendor.js add os  'angular2-jwt','auth0-lock', e rodar o webpack --config webpack.config.vendor.js
+ - depois disso vou no angular e add um novo serviço pra esse cara, colando o conteudo la do https://manage.auth0.com, aba clients(menu lateral esquerdo)
+ - Qnd eu adiciono o Auth no meu menu, preciso criar usuarios
+ user1@estudos.com - pass@word
+ - um erro de acess- control - No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:50349'
+ - no https://manage.auth0.com na aba Clients em 'Allowed Callback URLs' adiciona o meu localhost http://localhost:50349' e 'http://localhost:50349/vehicles', http://localhost:4200/callback pq eh meu home
+ - IMPORTANTE -- Nao esquecer de injetar o  auth.handleAuthentication(); no meu caso aqui, no NavMenuComponent
+
+
+
+
 
 * Lembretes
 

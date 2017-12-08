@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AppErrorHandler } from './app.error-handler';
 import { VehicleService } from './services/vehicle.service';
 import { PhotoService } from "./services/photo.service";
+import { Auth } from "./services/auth.service";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PhotoService } from "./services/photo.service";
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
         { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+        Auth,
         VehicleService,
         PhotoService,
         ProgressService
