@@ -14,9 +14,11 @@ import { CounterComponent } from './components/counter/counter.component';
 
 import { PaginationComponent } from './components/shared/pagination.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
+import { AdminComponent } from "./components/admin/admin.component";
 
 
 import { ToastyModule } from 'ng2-toasty';
+
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -30,6 +32,7 @@ import { ToastyModule } from 'ng2-toasty';
         VehicleListComponent,
         ViewVehicleComponent,
         PaginationComponent,
+        AdminComponent,
 
     ],
     imports: [
@@ -43,6 +46,7 @@ import { ToastyModule } from 'ng2-toasty';
             { path: 'vehicles/edit/:id', component: VehicleFormComponent },
             { path: 'vehicles/:id', component: ViewVehicleComponent },
             { path: 'vehicles', component: VehicleListComponent },
+            { path: 'admin', component: AdminComponent }, 
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },

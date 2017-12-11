@@ -49,6 +49,8 @@ namespace CoreTeste.Controllers
             return Ok(result);
         }
         [HttpGet]
+        
+
         public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource filterResource)
         {
             var filter = mapper.Map<VehicleQueryResource, VehicleQuery>(filterResource);
@@ -57,7 +59,7 @@ namespace CoreTeste.Controllers
             return mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
         }
         [HttpPut("{id}")]
-        [Authorize]
+
         public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource vehicleResource)
         {
 

@@ -150,8 +150,9 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
  - um erro de acess- control - No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:50349'
  - no https://manage.auth0.com na aba Clients em 'Allowed Callback URLs' adiciona o meu localhost http://localhost:50349' e 'http://localhost:50349/vehicles', http://localhost:4200/callback pq eh meu home
  - IMPORTANTE -- Nao esquecer de injetar o  auth.handleAuthentication(); no meu caso aqui, no NavMenuComponent
-
-
+ - Funcionando minha tela de login, posso customizá-la facilmente em "Hosted Pages"
+ -- Funfa de fora - https://allansuru.auth0.com/login?client=24Zk6UElCxtVL7KV55GICchel7gHcngg
+ -- Criei umas roles pra Admin, vide no meu auth0
 
 
 

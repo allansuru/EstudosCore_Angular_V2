@@ -44,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\admin\admin.component.ts" />
     <None Remove="ClientApp\app\components\shared\pagination.component.ts" />
     <None Remove="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
     <None Remove="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
@@ -54,6 +55,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app.error-handler.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\admin\admin.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\pagination.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\vehicle-form\vehicle-form.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
