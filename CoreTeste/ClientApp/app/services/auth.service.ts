@@ -103,16 +103,7 @@ export class Auth {
     }
 
     private readTokeRole() {
-        this.profile = JSON.parse(localStorage.getItem('profile') || '{}');
-        console.log(this.profile);
-        var token = localStorage.getItem('token');
-        if (token) {
-            var jwtHelper = new JwtHelper();
-            console.log(jwtHelper);
-            var decodedToken = jwtHelper.decodeToken(token);
-            this.roles = decodedToken['https://allan.com/roles'] || [];
-            console.log(this.roles);
-        }
+        this.readUserFromLocalStorage();
     }
     public isInRole(roleName) {
         return this.roles.indexOf(roleName) > -1;
