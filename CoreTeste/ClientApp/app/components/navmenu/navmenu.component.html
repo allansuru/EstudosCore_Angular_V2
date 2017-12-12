@@ -27,7 +27,7 @@
                         <span class='glyphicon glyphicon-home'></span> Vehicles
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']" *ngIf="auth.isInRole('admin')">
+                <li [routerLinkActive]="['link-active']" >
                     <a [routerLink]="['/vehicles/new']">
                         <span class='glyphicon glyphicon-plus'></span> New Vehicle
                     </a>

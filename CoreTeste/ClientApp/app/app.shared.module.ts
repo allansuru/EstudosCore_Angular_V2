@@ -18,6 +18,8 @@ import { AdminComponent } from "./components/admin/admin.component";
 
 
 import { ToastyModule } from 'ng2-toasty';
+import { AuthGuard } from "./services/auth-guard.service";
+import { AdminAuthGuard } from "./services/admin-auth-guard.service";
 
 
 @NgModule({
@@ -46,7 +48,7 @@ import { ToastyModule } from 'ng2-toasty';
             { path: 'vehicles/edit/:id', component: VehicleFormComponent },
             { path: 'vehicles/:id', component: ViewVehicleComponent },
             { path: 'vehicles', component: VehicleListComponent },
-            { path: 'admin', component: AdminComponent }, 
+            { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] }, 
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },

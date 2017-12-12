@@ -1,12 +1,17 @@
 ﻿import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from './../../services/vehicle.service';
 import { PhotoService } from './../../services/photo.service';
-import { ProgressService } from './../../services/progress.service';
+import { ProgressService, BrowserXhrWithProgress } from './../../services/progress.service';
 import { Component, OnInit, ElementRef, ViewChild, NgZone  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrowserXhr } from "@angular/http";
 
 @Component({
-    templateUrl: 'view-vehicle.html'
+    templateUrl: 'view-vehicle.html',
+    providers: [
+        { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+        ProgressService
+    ]
 })
 
 export class ViewVehicleComponent implements OnInit {

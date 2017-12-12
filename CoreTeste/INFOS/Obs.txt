@@ -153,7 +153,12 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
  - Funcionando minha tela de login, posso customizá-la facilmente em "Hosted Pages"
  -- Funfa de fora - https://allansuru.auth0.com/login?client=24Zk6UElCxtVL7KV55GICchel7gHcngg
  -- Criei umas roles pra Admin, vide no meu auth0
-
+ - Criei o AuthGuard(pra validar a autenticacao), por exemplo: se eu jogo /admin sem esse cara, por mais que eu valide o botao com um *ngIf="auth.isInRole('admin')"
+ se a pessoa souber a rota no caso,   { path: 'admin', component: AdminComponent},  ele vai cair na pagina, mas, com esse componente validando na rota
+   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },  ele vai verificar q ta expirado o login e pedir pra logar! esse é o jeito certo, e nao
+   validando o botao!!
+   - Lembrando que como add esse cara la no app.shared.module.ts, nao posso esquecer de add esse cara no provider no outro app.browser.module.ts 
+   - Joguei o progresService na view q ela é usada, ou seja, tirei do global la do  app.browser.module e joguei no view Vehicle no @Component, posso add o provider: []
 
 
 * Lembretes

@@ -30,8 +30,8 @@ export class Auth {
     constructor(public router: Router) {
         this.lock.on("authenticated", (authResult) => this.onUserAuthenticated(authResult));
     }
-    private onUserAuthenticated(authResult) {
-        localStorage.setItem('token', authResult.accessToken);
+    protected onUserAuthenticated(authResult) {
+        localStorage.setItem('id_token', authResult.accessToken);
 
         this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
             if (error) {
@@ -45,7 +45,7 @@ export class Auth {
             this.readUserFromLocalStorage();
         });
     }
-    private readUserFromLocalStorage() {
+    protected readUserFromLocalStorage() {
         this.profile = JSON.parse(localStorage.getItem('profile') || '{}');
 
         var token = localStorage.getItem('id_token');
@@ -95,6 +95,8 @@ export class Auth {
     public isAuthenticated() {
         // Check whether the current time is past the
         // access token's expiry time
+
+       // return tokenNotExpired('token');
 
         const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
 

@@ -29,7 +29,6 @@ namespace CoreTeste.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
 
@@ -97,7 +96,6 @@ namespace CoreTeste.Controllers
             return Ok(result);
         }
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
             var vehicle = await repository.GetVehicle(id, includedRelated: false);
