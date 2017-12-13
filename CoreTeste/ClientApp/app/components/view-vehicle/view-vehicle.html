@@ -27,8 +27,9 @@
             </ul>
             <br />
             <p>
-                <a class="btn btn-primary" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
-                <button class="btn btn-danger" (click)="delete()">Delete</button>
+                <button class="btn btn-danger" *ngIf="auth.isInRole('admin')" (click)="delete()">Delete</button>
+                <a class="btn btn-primary" *ngIf="auth.isInRole('admin')" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
+                <button class="btn btn-danger" *ngIf="auth.isAuthenticated()" (click)="delete()">Delete</button>
                 <a class="btn btn-default" [routerLink]="['/vehicles']">View All Vehicles</a>
 
             </p>
@@ -36,7 +37,7 @@
         <!-- Photos tab -->
         <div role="tabpanel" class="tab-pane" id="photos">
             <h2>Photos</h2>
-            <label class="btn btn-default btn-file">
+            <label *ngIf="auth.isInRole('admin')" class="btn btn-default btn-file">
                 <input  type="file" (change)="uploadPhoto()" #fileInput>
                 </label>
 

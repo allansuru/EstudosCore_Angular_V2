@@ -5,6 +5,7 @@ import { ProgressService, BrowserXhrWithProgress } from './../../services/progre
 import { Component, OnInit, ElementRef, ViewChild, NgZone  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserXhr } from "@angular/http";
+import { Auth } from "../../services/auth.service";
 
 @Component({
     templateUrl: 'view-vehicle.html',
@@ -28,7 +29,8 @@ export class ViewVehicleComponent implements OnInit {
         private toasty: ToastyService,
         private photoService: PhotoService,
         private vehicleService: VehicleService,
-        private progressService: ProgressService ) {
+        private progressService: ProgressService,
+        private auth: Auth) {
 
         route.params.subscribe(p => {
             this.vehicleId = +p['id'];

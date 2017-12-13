@@ -1,4 +1,5 @@
 using AutoMapper;
+using CoreTeste.Controllers;
 using CoreTeste.Core;
 using CoreTeste.Core.Models;
 using CoreTeste.Persistence;
@@ -44,7 +45,12 @@ namespace CoreTeste
             }).AddJwtBearer(options =>
             {
                 options.Authority = "https://allansuru.auth0.com/";
-                options.Audience = "https://api.estudos";
+                options.Audience = "https://allansuru.auth0.com/userinfos";
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Policies.RequireAdminRole, policy => policy.RequireClaim("https://allan.com/roles", "admin"));
             });
 
             services.AddMvc();

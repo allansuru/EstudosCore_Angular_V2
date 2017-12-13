@@ -29,6 +29,7 @@ namespace CoreTeste.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Policies.RequireAdminRole)]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
 
