@@ -20,6 +20,7 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { ToastyModule } from 'ng2-toasty';
 import { AuthGuard } from "./services/auth-guard.service";
 import { AdminAuthGuard } from "./services/admin-auth-guard.service";
+import { ChartModule } from "angular2-chartjs"
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AdminAuthGuard } from "./services/admin-auth-guard.service";
         ToastyModule.forRoot(),
         HttpModule,
         FormsModule,
+        ChartModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent, canActivate: [AdminAuthGuard]  },

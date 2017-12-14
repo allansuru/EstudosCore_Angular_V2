@@ -13,6 +13,8 @@ const treeShakableModules = [
     '@angular/platform-browser-dynamic',
     '@angular/router',
     'angular2-jwt',
+    'chart.js',
+    'angular2-chartjs',
     'auth0-lock',
     'raven-js',
     'underscore',

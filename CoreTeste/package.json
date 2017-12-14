@@ -60,8 +60,10 @@
     "zone.js": "0.8.12"
   },
   "dependencies": {
+    "angular2-chartjs": "^0.4.1",
     "angular2-jwt": "^0.2.3",
     "auth0-lock": "^10.24.1",
+    "chart.js": "^2.7.1",
     "font-awesome": "^4.7.0",
     "ng2-toasty": "^2.5.0",
     "node-injectable": "^2.1.0",

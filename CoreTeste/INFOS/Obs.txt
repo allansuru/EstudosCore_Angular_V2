@@ -14,6 +14,7 @@ npm install underscore e npm install @types/underscore
 npm install --save underscore
 npm install auth0-lock angular2-jwt --save
 npm install --save auth0-js
+npm install chart.js angular2-chartjs --save
 
 
 
@@ -159,8 +160,8 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
    validando o botao!!
    - Lembrando que como add esse cara la no app.shared.module.ts, nao posso esquecer de add esse cara no provider no outro app.browser.module.ts 
    - Joguei o progresService na view q ela é usada, ou seja, tirei do global la do  app.browser.module e joguei no view Vehicle no @Component, posso add o provider: []
-
-
+   - Adicionando chart no projeto - npm install chart.js angular2-chartjs --save, depois de instalar, no webpack add 'chart.js', 'angular2-chartjs'  rode webpack --config webpack.config.vendor.js 
+   depois de instalado tudo, importa a biblioteca no app.shared.module.ts
 * Lembretes
 
 Add-Migration "Nome"
