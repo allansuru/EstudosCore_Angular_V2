@@ -29,7 +29,6 @@
             <p>
                 <button class="btn btn-danger" *ngIf="auth.isInRole('admin')" (click)="delete()">Delete</button>
                 <a class="btn btn-primary" *ngIf="auth.isInRole('admin')" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
-                <button class="btn btn-danger" *ngIf="auth.isAuthenticated()" (click)="delete()">Delete</button>
                 <a class="btn btn-default" [routerLink]="['/vehicles']">View All Vehicles</a>
 
             </p>

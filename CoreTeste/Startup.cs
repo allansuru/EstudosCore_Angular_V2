@@ -33,6 +33,9 @@ namespace CoreTeste
             services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddTransient<IPhotoService, PhotoService>();
+            services.AddTransient<IPhotoStorage, FileSystenPhotoStorage>();
+
             services.AddAutoMapper();
             services.AddDbContext<CoreTesteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 

@@ -162,6 +162,12 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
    - Joguei o progresService na view q ela é usada, ou seja, tirei do global la do  app.browser.module e joguei no view Vehicle no @Component, posso add o provider: []
    - Adicionando chart no projeto - npm install chart.js angular2-chartjs --save, depois de instalar, no webpack add 'chart.js', 'angular2-chartjs'  rode webpack --config webpack.config.vendor.js 
    depois de instalado tudo, importa a biblioteca no app.shared.module.ts
+   - Na reta final, to refactorando alguns metodos, por ex, o PhotoController, Upload, tava grandao, daí criei uma interface pra tratar o upload, SEMPRE
+   lembrar de no caso, de criar uma nova INTERFACE, injetar ela no Startup.cs, senao nao funfa
+   - Refactorei algumas coisas, sempre criando suas interfaces e adicionandp no Startup.cs
+   - Pra fechar! Instalando o secret manager
+
+
 * Lembretes
 
 Add-Migration "Nome"

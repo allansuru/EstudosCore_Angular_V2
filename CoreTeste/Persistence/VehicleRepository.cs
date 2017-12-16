@@ -49,18 +49,13 @@ namespace CoreTeste.Persistence
             var query = context.Vehicles
          .Include(v => v.Model)
            .ThenInclude(m => m.Make)
-         .Include(v => v.Features)
-           .ThenInclude(vf => vf.Feature)
            .AsQueryable();
 
-            if (queryObj.MakeId.HasValue)
-                query = query.Where(v => v.Model.MakeId == queryObj.MakeId.Value);
 
-            if (queryObj.ModelId.HasValue)
-                query = query.Where(v => v.Model.MakeId == queryObj.ModelId.Value);
+            query = query.ApplyFiltering(queryObj);
 
 
-            var columnsMap = new Dictionary<string, Expression<Func<Vehicle, object>>>()
+             var columnsMap = new Dictionary<string, Expression<Func<Vehicle, object>>>()
             {
 
                 ["make"] = v => v.Model.Make.Name,
@@ -70,7 +65,7 @@ namespace CoreTeste.Persistence
 
             };
 
-            //estudar esse cara
+         
             query = query.ApplyOrdering(queryObj, columnsMap);
 
             result.TotalItems = await query.CountAsync();

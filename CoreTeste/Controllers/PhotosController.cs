@@ -24,22 +24,22 @@ namespace CoreTeste.Controllers
     {
         private readonly IHostingEnvironment host;
         private readonly IVehicleRepository vehicleRepository;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
         private readonly IPhotoRepository photoRepository;
         private readonly PhotoSettings photoSettings;
+        private readonly IPhotoService photoService;
 
-        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork, IMapper mapper, IPhotoRepository photoRepository ,IOptionsSnapshot<PhotoSettings> options )
+        public PhotosController(IHostingEnvironment host, IVehicleRepository vehicleRepository,  IMapper mapper, IPhotoRepository photoRepository ,IOptionsSnapshot<PhotoSettings> options, IPhotoService photoService )
         {
             this.host = host;
             this.vehicleRepository = vehicleRepository;
-            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
             this.photoRepository = photoRepository;
+            this.photoService = photoService;
             this.photoSettings = options.Value;
         }
 
-        public IHostingEnvironment HostingEnvironment { get; }
+        
 
         [HttpPost]
         public async Task<IActionResult> Upload(int vehicleId, IFormFile file)
@@ -55,24 +55,9 @@ namespace CoreTeste.Controllers
             if (!photoSettings.isSupported(file.FileName)) return BadRequest("Invalid file type");
 
             //Multiples Files IFormCollection
-           var uploadFolderPath =  Path.Combine(host.WebRootPath, "uploads");
-            // c:\wwwroot\
-            if (!Directory.Exists(uploadFolderPath))
-                Directory.CreateDirectory(uploadFolderPath);
+            var uploadFolderPath = Path.Combine(host.WebRootPath, "uploads");
 
-            //modificar o nome do fileUpload, é uma pratica contra hacker
-
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(uploadFolderPath, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            var photo = new Photo { FileName = fileName };
-            vehicle.Photos.Add(photo);
-            await unitOfWork.CompleteAsyc();
+            var photo = await photoService.UploadPhoto(vehicle, file, uploadFolderPath);
 
             return Ok(mapper.Map<Photo, PhotoResource>(photo));
 
