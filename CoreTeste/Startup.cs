@@ -15,6 +15,8 @@ namespace CoreTeste
 {
     public class Startup
     {
+
+        string _testSecret = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,7 +39,14 @@ namespace CoreTeste
             services.AddTransient<IPhotoStorage, FileSystenPhotoStorage>();
 
             services.AddAutoMapper();
-            services.AddDbContext<CoreTesteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            _testSecret = Configuration["ConnectionStrings:Default"];
+
+           services.AddDbContext<CoreTesteDbContext>(options => options.UseSqlServer(_testSecret));
+            //Antes de mudar o appsetings.json já que gerei secrets.json
+            //  services.AddDbContext<CoreTesteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+
 
             // 1. Add Authentication Services  //https://manage.auth0.com
             services.AddAuthentication(options =>
@@ -63,8 +72,12 @@ namespace CoreTeste
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder();
+
             if (env.IsDevelopment())
             {
+             //   builder.AddUserSecrets<Startup>();
+
                 app.UseDeveloperExceptionPage();
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {

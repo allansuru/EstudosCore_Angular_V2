@@ -15,6 +15,7 @@ npm install --save underscore
 npm install auth0-lock angular2-jwt --save
 npm install --save auth0-js
 npm install chart.js angular2-chartjs --save
+Install-Package Microsoft.Extensions.SecretManager.Tools -Version 2.0.0
 
 
 
@@ -165,8 +166,10 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
    - Na reta final, to refactorando alguns metodos, por ex, o PhotoController, Upload, tava grandao, daí criei uma interface pra tratar o upload, SEMPRE
    lembrar de no caso, de criar uma nova INTERFACE, injetar ela no Startup.cs, senao nao funfa
    - Refactorei algumas coisas, sempre criando suas interfaces e adicionandp no Startup.cs
-   - Pra fechar! Instalando o secret manager
-
+   - Pra fechar! Instalando o secret manager pra esconder por exemplo a minha conexao de string - BOAS PRATICAS
+   https://docs.microsoft.com/pt-br/aspnet/core/security/app-secrets?tabs=visual-studio
+   - adicionei no csproj o    <UserSecretsId>coreEstudos-project</UserSecretsId>
+   -- pra gerenciar pelo win C:\Users\allan\AppData\Roaming\Microsoft\UserSecrets\coreEstudos-project
 
 * Lembretes
 
@@ -190,7 +193,10 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
  //"Data Source=DESKTOP-Q5M5PCV\SQLEXPRESS;Initial Catalog=vega;Integrated Security=True";
 
 
- OBS pós migração 1.1 pra core 2.0
 
-- ngZone  nao taq funfando, retirei do projeto
-- o toast tive q add em todos apps.modules pra funfar 
+ //OLD appsetings.json  => antes de gerar o secrets.json
+{
+  "ConnectionStrings": {
+    "Default": "Data Source=DESKTOP-Q5M5PCV\\SQLEXPRESS;Initial Catalog=EstudosCoreAngular;Integrated Security=True"
+  },
+
