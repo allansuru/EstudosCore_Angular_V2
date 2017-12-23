@@ -13,6 +13,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { PaginationComponent } from './components/shared/pagination.component';
+import { ContatoBuscaComponent } from "./components/busca/contato-busca.component";
+
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 import { AdminComponent } from "./components/admin/admin.component";
 
@@ -35,6 +37,7 @@ import { ChartModule } from "angular2-chartjs"
         VehicleListComponent,
         ViewVehicleComponent,
         PaginationComponent,
+        ContatoBuscaComponent,
         AdminComponent,
 
     ],
@@ -46,7 +49,7 @@ import { ChartModule } from "angular2-chartjs"
         ChartModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
-            { path: 'vehicles/new', component: VehicleFormComponent, canActivate: [AdminAuthGuard]  },
+            { path: 'vehicles/new', component: VehicleFormComponent, canActivate: [AdminAuthGuard], data: { title: 'Adicione um veículo!' }  },
             { path: 'vehicles/edit/:id', component: VehicleFormComponent },
             { path: 'vehicles/:id', component: ViewVehicleComponent },
             { path: 'vehicles', component: VehicleListComponent },

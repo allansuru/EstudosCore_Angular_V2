@@ -33,6 +33,7 @@ export class VehicleService {
         return this.http.get(this.vehiclesEndpoint + '?' + this.toQueryString(filter))
             .map(res => res.json());
     }
+    
 
     toQueryString(obj) {
         var parts: any = [];
