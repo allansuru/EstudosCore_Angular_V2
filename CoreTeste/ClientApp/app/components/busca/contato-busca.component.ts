@@ -38,7 +38,6 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
     @Input() busca: string; //recomendado usar o decorator //input property
     @Output() buscaChange: EventEmitter<string> = new EventEmitter<string>();
  
-    private termosDaBusca: Subject<string> = new Subject<string>();
 
     constructor(private vehicleService: VehicleService, private router: Router,) {
 
@@ -55,12 +54,7 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
                 for (var i = 0; i < result.totalItems; i++) {
                     this.contato2.push({ 'id': result.items[i].id, 'nome': result.items[i].contact.name })
                    
-                }
-
-                console.log('Contatos2', this.contato2);
-
-
-                
+                }          
             });
        
     }
