@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Vehicle, KeyValuePair } from './../../models/vehicle';
+import { Contato2 } from './../../models/contato2'
 import { VehicleService } from './../../services/vehicle.service';
 
 
@@ -22,7 +23,9 @@ import { VehicleService } from './../../services/vehicle.service';
 
 export class ContatoBuscaComponent implements OnInit, OnChanges {
 
-    private separaContatos: any = [];
+
+    contato2: Contato2[] = [];
+    recebeId: string;
 
     private readonly PAGE_SIZE = 99;
     query: any = {
@@ -37,7 +40,7 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
  
     private termosDaBusca: Subject<string> = new Subject<string>();
 
-    constructor(private vehicleService: VehicleService) {
+    constructor(private vehicleService: VehicleService, private router: Router,) {
 
     }
     private populateVehicles() {
@@ -50,9 +53,11 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
 
                 //separando meus contatos
                 for (var i = 0; i < result.totalItems; i++) {
-                    this.separaContatos.push(result.items[i].contact.name);
+                    this.contato2.push({ 'id': result.items[i].id, 'nome': result.items[i].contact.name })
+                   
                 }
-                console.log(this.separaContatos);
+
+                console.log('Contatos2', this.contato2);
 
 
                 
@@ -70,27 +75,31 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
 
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('change');
+    
     }
 
     searchUp() {
 
-        this.separaContatos.filter(f => {
-            if (f === this.busca)
+        this.contato2.filter(f => {
+            if (f.nome === this.busca)
             {
                 this.contatos.push(f);
+                this.recebeId = f.id;
+
                 
             }
-            else
-            {
-                console.log('termo nao funfou');
-            }
+
 
         })
     }
 
     verDetalhe(c)
     {
+        console.log('Id', this.recebeId);
         console.log('verDetalhes', c);
+
+        this.router.navigate(['/vehicles/', this.recebeId]);
+
+
     }
 }

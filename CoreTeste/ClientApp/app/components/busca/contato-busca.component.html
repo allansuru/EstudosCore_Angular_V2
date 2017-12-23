@@ -13,8 +13,8 @@
             </div>
 
             <ul class="list-group" *ngIf="contatos.length > 0" >
-                CARALHOOOO
-                <li class="list-group-item" *ngFor="let c of contatos" (click)="verDetalhe(c)">{{c}}</li>
+
+                <li class="list-group-item" *ngFor="let c of contatos" (click)="verDetalhe(c)">{{c.nome}}</li>
             </ul>
 
         </div>
