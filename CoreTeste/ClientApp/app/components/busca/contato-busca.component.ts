@@ -64,7 +64,7 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
        
         this.populateVehicles();
 
-
+        console.log(this.contato2);
     }
 
 

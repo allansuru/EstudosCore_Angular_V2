@@ -170,6 +170,7 @@ depois da pra seraparar pra ficar mais bonito e criamos um metodo de setVehicle.
    https://docs.microsoft.com/pt-br/aspnet/core/security/app-secrets?tabs=visual-studio
    - adicionei no csproj o    <UserSecretsId>coreEstudos-project</UserSecretsId>
    -- pra gerenciar pelo win C:\Users\allan\AppData\Roaming\Microsoft\UserSecrets\coreEstudos-project
+   - Instalando Install-Package Swashbuckle.AspNetCore ,  https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
 
 * Lembretes
 
