@@ -151,7 +151,10 @@ export class VehicleListComponent implements OnInit {
   /*Arrow Function exemple com classes!  */
 
         let classeGo =  () => {
-            let cp = new Point(100,20);
+            let cp = new Point(100, 20);
+            
+           
+            
            // cp.x = 10, cp.y = 20;
            
 
@@ -169,14 +172,8 @@ export class VehicleListComponent implements OnInit {
 
 class Point
 {
-    private x: number;
-    private y: number;
-
-    constructor(x: number, y: number)
-    {
-        this.x = x;
-        this.y = y;
-    }
+    constructor(private x: number, private y: number) { }
+   
 
 
     somaPoints()
