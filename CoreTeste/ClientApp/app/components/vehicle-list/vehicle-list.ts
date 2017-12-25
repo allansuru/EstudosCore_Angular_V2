@@ -8,6 +8,7 @@ import { Auth } from "../../services/auth.service";
     templateUrl: 'vehicle-list.html'
 })
 
+
 export class VehicleListComponent implements OnInit {
     private readonly PAGE_SIZE = 3;
 
@@ -26,6 +27,8 @@ export class VehicleListComponent implements OnInit {
         {}  
     ];
 
+    
+
     constructor(private vehicleService: VehicleService, private auth: Auth)
     {
      
@@ -33,7 +36,9 @@ export class VehicleListComponent implements OnInit {
 
     ngOnInit() {
 
-  
+        //Estudos
+        this.estudos();
+    
 
         this.vehicleService.getMakes()
             .subscribe(m => this.makes = m);
@@ -88,4 +93,109 @@ export class VehicleListComponent implements OnInit {
         this.query.page = page;
         this.populateVehicles();
     }
+
+
+
+    estudos() {
+
+        /** ESTUDOSS TYPESCRIPT **/
+
+
+        /*Arrow Function exemple!
+    
+        //let doLog = (message) => {
+    
+        //    console.log('entrou');
+        //    console.log(message);
+        //    console.log('saiu');
+        //}
+    
+    
+        //doLog('ArroWF');
+    
+         /*Arrow Function exemple com interface!  */
+        //let draw = (point: point) => console.log('point', point.x + point.y);
+        //let getDistance = (pointA: point, pointB: point) => {
+        //    console.log('Total', (pointA.x * pointA.y) + (pointB.x + pointB.y));
+        //}
+
+        //or
+
+        //let draw = (point: point) => {
+        //    //faz
+        //    console.log('point', point.x + point.y);
+        //}
+
+        //draw({
+
+        //    x: 1,
+        //    y: 2
+        //})
+        //getDistance({
+        //    x: 4,
+        //    y: 5
+        //},
+        //    {
+        //        x: 1,
+        //        y: 2
+        //    })
+
+        //Usando classe no type script
+
+        //let p: Point;
+
+        //p = new Point();
+
+        //console.log('soma classe', p.soma(1, 2));
+
+  /*Arrow Function exemple com classes!  */
+
+        let classeGo =  () => {
+            let cp = new Point(100,20);
+           // cp.x = 10, cp.y = 20;
+           
+
+            console.log('SOMA', cp.soma(1, 2));
+            console.log('SOMA POINTS', cp.somaPoints());
+        }
+        classeGo()
+
+
+        /** ESTUDOSS TYPESCRIPT **/
+
+    }
 }
+
+
+class Point
+{
+    private x: number;
+    private y: number;
+
+    constructor(x: number, y: number)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+
+    somaPoints()
+    {
+        return this.x + this.y;
+    }
+
+ 
+    soma(x, y)
+    {
+        return x + y;
+    }
+}
+
+
+//procure usar class sempre
+interface point 
+{
+    x: number,
+    y: number
+}
+
