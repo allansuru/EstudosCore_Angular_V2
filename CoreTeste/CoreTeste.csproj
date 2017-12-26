@@ -53,6 +53,7 @@
     <None Remove="ClientApp\app\components\shared\pagination.component.ts" />
     <None Remove="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
     <None Remove="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
+    <None Remove="ClientApp\app\models\estudos.ts" />
     <None Remove="ClientApp\app\models\vehicle.ts" />
     <None Remove="ClientApp\app\services\admin-auth-guard.service.ts" />
     <None Remove="ClientApp\app\services\auth-guard.service.ts" />
@@ -69,6 +70,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\vehicle-list\vehicle-list.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\view-vehicle\view-vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\contato2.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\estudos.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\admin-auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\auth-guard.service.ts" />

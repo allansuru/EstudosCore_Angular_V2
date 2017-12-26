@@ -3,6 +3,9 @@ import { VehicleService } from './../../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
 import { Auth } from "../../services/auth.service";
 
+//estudos
+import { Point, LikeComponent } from './../../models/estudos';
+
 
 @Component({
     templateUrl: 'vehicle-list.html'
@@ -152,7 +155,13 @@ export class VehicleListComponent implements OnInit {
 
         let classeGo =  () => {
             let cp = new Point(100, 20);
-            
+
+
+            let value = cp.x = 10;
+
+            console.log('X', value);
+
+          
            
             
            // cp.x = 10, cp.y = 20;
@@ -164,29 +173,25 @@ export class VehicleListComponent implements OnInit {
         classeGo()
 
 
+        //Testando o Like
+
+
+        let like = new LikeComponent(10, true);
+
+      //  like.onClick()
+        like.onClick();
+
+        console.log(`likesCount: ${like.likesCount}, isSelected: ${like.isSelected}`);
+
+       
+
+
         /** ESTUDOSS TYPESCRIPT **/
 
     }
 }
 
 
-class Point
-{
-    constructor(private x: number, private y: number) { }
-   
-
-
-    somaPoints()
-    {
-        return this.x + this.y;
-    }
-
- 
-    soma(x, y)
-    {
-        return x + y;
-    }
-}
 
 
 //procure usar class sempre
