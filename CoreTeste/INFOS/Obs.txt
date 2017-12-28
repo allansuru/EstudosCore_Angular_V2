@@ -201,3 +201,12 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
     "Default": "Data Source=DESKTOP-Q5M5PCV\\SQLEXPRESS;Initial Catalog=EstudosCoreAngular;Integrated Security=True"
   },
 
+
+
+  --Agilizando criacao de componentes, etc no angular || ANGULAR CLI -> http://blog.alura.com.br/criando-aplicacoes-angular-com-angular-cli/
+
+  1ª ng g c NOME
+
+  OBS: NOME, Vai ser criado a pasta com o "NOME", e os components(css,html,spec e ts)
+  OBS2: Esse cara já injeta no app-module -- @NgModule({ declarations: 'NOMECOMPONENT'}) 
+
