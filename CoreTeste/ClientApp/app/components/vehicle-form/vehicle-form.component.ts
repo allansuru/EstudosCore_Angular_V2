@@ -33,7 +33,8 @@ export class VehicleFormComponent implements OnInit {
 
         }
     };
-
+       //isso aqui evita o NEW - FAZENDO ISSO FICA FORTEMENTE ACOPLADO, mas pra funfar tem q add esse serviço no app.module(provider)
+    //injecao de dependencia = provedor de serviços desacoplados === 'baixo acoplamento na veia'
     constructor(
         private route: ActivatedRoute,
         private router: Router,

@@ -24,6 +24,7 @@ import { AUTH_PROVIDERS } from "angular2-jwt/angular2-jwt";
         ToastyModule.forRoot(),
         AppModuleShared
     ],
+    //SEM ESSE CARA, INJEÇÃO DE DEPENDENCIA NAO FUNFA!!
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
     
