@@ -284,9 +284,6 @@ export class CoursesComponent {
     
     }
 
-    getColor() {
-        let isRed = 'red ! important';
-    }
 
     getTitle() {
         return this.title;
