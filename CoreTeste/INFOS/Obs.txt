@@ -243,6 +243,10 @@ import { CourseService } from "../../services/courses.service";
 <td [attr.colspan]='colspan'></td>
 </tr>
 </table>
+COM Template Variables<input #valor (keyup.enter)="valueDigitado2(valor.value);" /> <br>
+SEM Template Variables<input (keyup.enter)="valueDigitado($event);" /> <br>
+<input (keyup.enter)="onKeyUp2();" />
+<!--<input (keyup)="onKeyUp($event);" /> -->
 <div (click)="clickDiv($event);">
 <button type="button" (click)="ativa();onSave($event);" class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue': 'white'" [class.active]="isActive">Primary</button>
 </div>
@@ -286,5 +290,17 @@ export class CoursesComponent {
 
     getTitle() {
         return this.title;
+    }
+    onKeyUp($event:any) {
+        if ($event.keyCode == 13) console.log('ENTER was pressed!'); //uma maneira MELHOR ABAIXO!
+    }
+    onKeyUp2() {
+        console.log('ENTERRRR was pressed');
+    }
+    valueDigitado($event:any) {
+        console.log('Valor Digitado UGLY: ', $event.target.value);
+    }
+    valueDigitado2(valor:any) {
+        console.log('Valor Digitado BEAUTY-TEMPLATE VARIABLE: ', valor);
     }
 }
