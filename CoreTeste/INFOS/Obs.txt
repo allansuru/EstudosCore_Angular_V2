@@ -223,7 +223,7 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
 
   ISOLANDO UM COMPONENTE DE ESTUDOS - FUNFANDO EM OUTRO PROJETO!
 
- import { Component } from '@angular/core'
+import { Component } from '@angular/core'
 import { CourseService } from "../../services/courses.service";
 
 
@@ -243,7 +243,9 @@ import { CourseService } from "../../services/courses.service";
 <td [attr.colspan]='colspan'></td>
 </tr>
 </table>
+<div (click)="clickDiv($event);">
 <button type="button" (click)="ativa();onSave($event);" class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue': 'white'" [class.active]="isActive">Primary</button>
+</div>
 `
 
 })
@@ -268,7 +270,11 @@ export class CoursesComponent {
     {
         this.isActive = true;
     }
+    clickDiv($event: any) {
+        console.log('clique DIV', $event);
+    }
     onSave($event: any) {
+        $event.stopPropagation(); // para a arvore do DOM, ou seja, só vai estorar o console do btn click, o da div ele caga!
         console.log('ON SAVE', $event);
         console.log($event.x);
     
