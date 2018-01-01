@@ -205,8 +205,80 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
 
   --Agilizando criacao de componentes, etc no angular || ANGULAR CLI -> http://blog.alura.com.br/criando-aplicacoes-angular-com-angular-cli/
 
-  1ª ng g c NOME
+  PREREQ : npm install --save-dev @angular/cli@latest
+
+  1ª - Componente = ng g c NOME
 
   OBS: NOME, Vai ser criado a pasta com o "NOME", e os components(css,html,spec e ts)
   OBS2: Esse cara já injeta no app-module -- @NgModule({ declarations: 'NOMECOMPONENT'}) 
 
+  2ª - Serviço =  ng g s NOME
+
+
+
+  DOM STYLE OBJECTS = https://www.w3schools.com/jsref/dom_obj_style.asp
+
+
+
+
+  ISOLANDO UM COMPONENTE DE ESTUDOS - FUNFANDO EM OUTRO PROJETO!
+
+ import { Component } from '@angular/core'
+import { CourseService } from "../../services/courses.service";
+
+
+@Component({
+    selector: 'courses',
+    template: `<h2>{{   getTitle() }} </h2>
+            <ul>
+                    <li *ngFor="let c of courses">
+                           {{ c }}
+                    </li>
+            </ul>
+<h1  [textContent]='title2'></h1>
+<img [src] = "imgUrl" />
+
+<table>
+<tr>
+<td [attr.colspan]='colspan'></td>
+</tr>
+</table>
+<button type="button" (click)="ativa();onSave($event);" class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue': 'white'" [class.active]="isActive">Primary</button>
+`
+
+})
+
+//pascal name Conventional
+export class CoursesComponent {
+    isActive = false;
+    title = "Curso! - Allan Passos";
+    title2 = "Estudos e + estudos"
+    colspan = 10;
+    imgUrl = "http://gearnuke.com/wp-content/uploads/2016/07/final-fantasy-xv-1-2-768x432.png";
+
+    courses: string[] = [];
+
+    //isso aqui evita o NEW - FAZENDO ISSO FICA FORTEMENTE ACOPLADO, mas pra funfar tem q add esse serviço no app.module(provider)
+    //injecao de dependencia = provedor de serviços desacoplados === 'baixo acoplamento na veia'
+    constructor(service: CourseService) {
+
+        this.courses = service.getCourses();
+    } 
+    ativa()
+    {
+        this.isActive = true;
+    }
+    onSave($event: any) {
+        console.log('ON SAVE', $event);
+        console.log($event.x);
+    
+    }
+
+    getColor() {
+        let isRed = 'red ! important';
+    }
+
+    getTitle() {
+        return this.title;
+    }
+}
