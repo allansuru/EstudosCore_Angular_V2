@@ -217,6 +217,7 @@ Diferentemente de ter um web.config, temos um appsetings.json, lá devemos add a
 
 
   DOM STYLE OBJECTS = https://www.w3schools.com/jsref/dom_obj_style.asp
+  PIPES ANGULAR = https://v2.angular.io/docs/ts/latest/guide/pipes.html
 
 
 
@@ -243,6 +244,7 @@ import { CourseService } from "../../services/courses.service";
 <td [attr.colspan]='colspan'></td>
 </tr>
 </table>
+COM Two-Waying binding<input [(ngModel)]="email" (keyup.enter)="valueDigitado3();" /> <br>
 COM Template Variables<input #valor (keyup.enter)="valueDigitado2(valor.value);" /> <br>
 SEM Template Variables<input (keyup.enter)="valueDigitado($event);" /> <br>
 <input (keyup.enter)="onKeyUp2();" />
@@ -250,12 +252,27 @@ SEM Template Variables<input (keyup.enter)="valueDigitado($event);" /> <br>
 <div (click)="clickDiv($event);">
 <button type="button" (click)="ativa();onSave($event);" class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue': 'white'" [class.active]="isActive">Primary</button>
 </div>
+{{ course.title | uppercase }} <br />
+{{ course.students | number }} <br />
+{{ course.rating | number:'1.1-1'  }} <br />
+{{ course.price | currency:'BRL':true:'3.2-2' }} <br />
+{{ course.releaseDate | date:'shortDate' }} <br />
+
 `
 
 })
 
 //pascal name Conventional
 export class CoursesComponent {
+
+    course = {
+        title: 'Estudos Angular2+',
+        rating: 4.9745,
+        students: 30123,
+        price: 190.05,
+        releaseDate: new Date(2017,1,1)
+    }
+    email = 'me@email.com';
     isActive = false;
     title = "Curso! - Allan Passos";
     title2 = "Estudos e + estudos"
@@ -284,6 +301,9 @@ export class CoursesComponent {
     
     }
 
+    getColor() {
+        let isRed = 'red ! important';
+    }
 
     getTitle() {
         return this.title;
@@ -299,5 +319,8 @@ export class CoursesComponent {
     }
     valueDigitado2(valor:any) {
         console.log('Valor Digitado BEAUTY-TEMPLATE VARIABLE: ', valor);
+    }
+    valueDigitado3(){
+        console.log(this.email);
     }
 }
