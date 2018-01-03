@@ -228,6 +228,7 @@ import { Component } from '@angular/core'
 import { CourseService } from "../../services/courses.service";
 
 
+
 @Component({
     selector: 'courses',
     template: `<h2>{{   getTitle() }} </h2>
@@ -257,7 +258,7 @@ SEM Template Variables<input (keyup.enter)="valueDigitado($event);" /> <br>
 {{ course.rating | number:'1.1-1'  }} <br />
 {{ course.price | currency:'BRL':true:'3.2-2' }} <br />
 {{ course.releaseDate | date:'shortDate' }} <br />
-
+CUSTOM PIPES = {{text | summary:16}}
 `
 
 })
@@ -280,6 +281,8 @@ export class CoursesComponent {
     imgUrl = "http://gearnuke.com/wp-content/uploads/2016/07/final-fantasy-xv-1-2-768x432.png";
 
     courses: string[] = [];
+
+    text = `Lorem IPSUM TESTE do TESTE de PIPE Lorem IPSUM TESTE do TESTE de PIPE 2 Lorem IPSUM TESTE do TESTE de PIPE 3 Lorem IPSUM TESTE do TESTE de PIPE 4  `
 
     //isso aqui evita o NEW - FAZENDO ISSO FICA FORTEMENTE ACOPLADO, mas pra funfar tem q add esse serviço no app.module(provider)
     //injecao de dependencia = provedor de serviços desacoplados === 'baixo acoplamento na veia'
@@ -323,4 +326,26 @@ export class CoursesComponent {
     valueDigitado3(){
         console.log(this.email);
     }
+}
+
+// o MEU PIPE CUSTOMIZADO e usando argumento == sumary:limits!! EX: {{text | summary:10}}
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+//Mais um decorator, e lembrando, sempre é um objeto ({}) = OBJETO = JSON
+// pra usá-lo preciso adicionar(SummaryPipe) ele no app.module em 'declarations'
+@Pipe({
+    name: 'summary'
+})
+
+export class SummaryPipe implements PipeTransform {
+    transform(value: string, limits?: number) {
+
+        if (!value)
+            return null;
+
+        return value.substring(0, limits) + '...';
+
+    }
+
 }
