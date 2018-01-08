@@ -339,6 +339,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 
 export class SummaryPipe implements PipeTransform {
+  //posso ter inúmeros parametros value: string, limits?: number, limits2? : number ...
     transform(value: string, limits?: number) {
 
         if (!value)
@@ -351,3 +352,39 @@ export class SummaryPipe implements PipeTransform {
     }
 
 }
+
+//FAVORITE COMPONENTE
+
+- TS 
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+    selector: 'favorite',
+    templateUrl: './favorite.component.html'
+})
+export class FavoriteComponent implements OnInit {
+
+    isFavorite = false;
+   
+constructor(){}
+
+
+    ngOnInit() {
+
+}
+
+    onClick() {
+        this.isFavorite = !this.isFavorite; // se for true, vira false e vice e versa
+
+
+    }
+}
+
+
+- HTML
+
+<span class="glyphicon"
+      [class.glyphicon-star]="isFavorite"
+      [class.glyphicon-star-empty]="!isFavorite"
+      (click)="onClick()">
+</span>
